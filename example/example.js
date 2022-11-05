@@ -2,27 +2,40 @@
 
 const VanMoofWebAPI = require('../src/index.js');
 const tools = require('./tools');
+const { buntstift } = require('buntstift');
 
 let settingsFile = tools.getSettingsFile();
 
 const account = settingsFile.ACCOUNT;
 const password = settingsFile.PASSWORD;
 
-test();
-
-async function test() {
+(async () => {
     const webService = new VanMoofWebAPI.WebService();
     const success = await webService.authenticate(account, password);
-    console.log(success);
     if (success) {
         const customerData = await webService.getCustomerData();
-        console.log(customerData.data);
-        //console.log(customerData.data.bikes[0]);
-        //console.log(customerData.data.bikeDetails[0]);
-        const bikeId = customerData.data.bikes[0].id;
-        const bike = await webService.getBikeData(bikeId);
-        console.log(bike);
-        const hash = await webService.getCustomerDataHash();
-        console.log(hash);
+        const data = customerData.data;
+        buntstift.list(`Name: ${data.name}`);
+        buntstift.list(`Email: ${data.email}`);
+        for (let i = 0; i < data.bikes.length; i++) {
+            const bike = data.bikes[i];
+            buntstift.header(`Bike ${i} (id: ${bike.id}):`);
+            buntstift.list(`name: ${bike.name}`);
+            buntstift.list(`frame number: ${bike.frameNumber}`);
+            buntstift.list(`mac address: ${bike.macAddress}`);
+            const tripDistance = bike.tripDistance;
+            const distanceKilometers = (tripDistance / 10).toFixed(1);
+            buntstift.list(`distance: ${distanceKilometers} km`);
+            buntstift.list(`firmware: ${bike.smartmoduleCurrentVersion}`);
+            if (bike.smartmoduleDesiredVersion) {
+                buntstift.list(`new firmware available: ${bike.smartmoduleDesiredVersion}`);
+            }
+            const stolen = bike.stolen;
+            buntstift.list(`is stolen: ${stolen.isStolen}`);
+            if (stolen.isStolen) {
+                buntstift.list(`date stolen: ${stolen.dateStolen}`);
+                buntstift.list(`latest location: ${stolen.latestLocation}`);
+            }
+        }
     }
-}
+})();
