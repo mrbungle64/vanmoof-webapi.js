@@ -43,6 +43,27 @@ cd examples
 node ./customerAndBikeData.js
 ```
 
+### Example output
+
+```
+∙ Name: John Doe
+∙ Email: johndoe@domain.com
+∙ Number of bikes: 1
+───────────────────────
+▻ Bike #1 (id: xxxxxx):
+───────────────────────
+∙ name: My S3
+∙ frame number: xxxxxxxxxx
+∙ mac address: xx:xx:xx:xx:xx:xx
+∙ distance: 1732.4 km
+∙ firmware: 1.8.2
+∙ is tracking: false
+∙ is stolen: false
+∙ color: Dark
+∙ color code (primary): #25282a
+∙ color code (secondary): #25282a
+```
+
 ## Changelog
 
 ### 0.1.0
