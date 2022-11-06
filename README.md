@@ -4,7 +4,11 @@
 
 This is a library for accessing the VanMoof Web API (readonly)
 
-### Usage
+# Before you install
+
+* This library provides access to your VanMoof account information only
+* You cannot connect to any bike (via Bluetooth)
+* You cannot change any information or settings
 
 # Installation
 
