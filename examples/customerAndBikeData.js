@@ -10,11 +10,10 @@ const account = settingsFile.ACCOUNT;
 const password = settingsFile.PASSWORD;
 
 (async () => {
-    const webService = new VanMoofWebAPI.WebService();
+    const webAPI = new VanMoofWebAPI.WebAPI();
     try {
-        await webService.authenticate(account, password);
-        const customerData = await webService.getCustomerData();
-        const data = customerData.data;
+        await webAPI.authenticate(account, password);
+        const data = (await webAPI.getCustomerData()).data;
         buntstift.line();
         buntstift.list(`Name: ${data.name}`);
         buntstift.list(`Email: ${data.email}`);
@@ -39,10 +38,10 @@ const password = settingsFile.PASSWORD;
                 buntstift.list(`date stolen: ${stolen.dateStolen}`);
                 buntstift.list(`latest location: ${stolen.latestLocation}`);
             }
-            const colors = bike.modelColor;
-            buntstift.list(`color: ${colors.name}`);
-            buntstift.list(`color code (primary): ${colors.primary}`);
-            buntstift.list(`color code (secondary): ${colors.secondary}`);
+            const modelColor = bike.modelColor;
+            buntstift.list(`color: ${modelColor.name}`);
+            buntstift.list(`color code (primary): ${modelColor.primary}`);
+            buntstift.list(`color code (secondary): ${modelColor.secondary}`);
         }
     } catch (e) {
         buntstift.error(e.toString());
