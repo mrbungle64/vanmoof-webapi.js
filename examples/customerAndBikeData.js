@@ -15,7 +15,6 @@ const password = settingsFile.PASSWORD;
         await webService.authenticate(account, password);
         const customerData = await webService.getCustomerData();
         const data = customerData.data;
-        console.log(data);
         buntstift.line();
         buntstift.list(`Name: ${data.name}`);
         buntstift.list(`Email: ${data.email}`);

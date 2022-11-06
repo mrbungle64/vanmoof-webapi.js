@@ -4,9 +4,40 @@
 
 This is a library for accessing the VanMoof Web API (readonly)
 
-## Examples
+### Usage
 
-For examples see `example.js` file in the example folder
+# Installation
+
+```bash
+git clone https://github.com/mrbungle64/vanmoof-webapi.js.git
+cd vanmoof-webapi.js
+npm install
+```
+
+## Example files
+
+* `examples/customerAndBikeData.js`
+
+### Setup
+
+Copy the `settings.js` file to the parent folder of the working directory
+
+```bash
+cp examples/settings.js ./../
+```
+
+Add your VanMoof account information to this file
+```js
+exports.ACCOUNT_ID = 'email@domain.com';
+exports.PASSWORD = 'a1b2c3d4';
+```
+
+### Usage
+
+```bash
+cd examples
+node ./customerAndBikeData.js
+```
 
 ## Changelog
 
