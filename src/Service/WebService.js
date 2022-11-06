@@ -102,12 +102,17 @@ class VanMoofWebAPI {
     }
 
     async getBikeData(bikeId) {
-        const url = new URL(this.BASE_URL + '/getBikeData/' + bikeId);
+        const url = new URL(this.BASE_URL + `/getBikeData/${bikeId}`);
         return this.requestGet(url.href);
     }
 
     async getBikeMessages(bikeId) {
-        const url = new URL(this.BASE_URL + '/getBikeMessages/' + bikeId);
+        const url = new URL(this.BASE_URL + `/getBikeMessages/${bikeId}`);
+        return this.requestGet(url.href);
+    }
+
+    async getCurrentBikeShares(bikeId) {
+        const url = new URL(this.BASE_URL + `/getBikeSharingInvitationsForBike/${bikeId}`);
         return this.requestGet(url.href);
     }
 }
