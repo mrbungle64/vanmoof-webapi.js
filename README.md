@@ -2,7 +2,7 @@
 
 ![S3](./vanmoof-s3.png)
 
-This is a library for accessing the VanMoof Web API (readonly)
+This is a library for accessing the VanMoof Web API (read-only)
 
 # Before you install
 
@@ -18,11 +18,11 @@ cd vanmoof-webapi.js
 npm install
 ```
 
-## Example files
+# Example files
 
 * `examples/customerAndBikeData.js`
 
-### Setup
+## Setup
 
 Copy the `settings.js` file to the parent folder of the working directory
 
@@ -36,14 +36,14 @@ exports.ACCOUNT_ID = 'email@domain.com';
 exports.PASSWORD = 'a1b2c3d4';
 ```
 
-### Usage
+## Usage
 
 ```bash
 cd examples
 node ./customerAndBikeData.js
 ```
 
-### Example output
+## Example output
 
 ```
 ∙ Name: John Doe
@@ -63,6 +63,14 @@ node ./customerAndBikeData.js
 ∙ color code (primary): #25282a
 ∙ color code (secondary): #25282a
 ```
+
+# Functions
+
+* `getCustomerData()`
+* `getDevices()`
+* `getBikeData(bikeId)`
+* `getBikeMessages(bikeId)`
+* `getCurrentBikeShares(bikeId)`
 
 ## Changelog
 
