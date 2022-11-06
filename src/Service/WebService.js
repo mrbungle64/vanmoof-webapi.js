@@ -91,28 +91,29 @@ class VanMoofWebAPI {
         return this.customerData;
     }
 
-    async getCustomerDataHash() {
-        const url = new URL(this.BASE_URL + '/getCustomerDataHash/');
-        return this.requestGet(url.href);
+    async getDevices() {
+        return this.requestData('getDevices');
     }
 
-    async getDevices() {
-        const url = new URL(this.BASE_URL + '/getDevices/');
+    async requestData(path) {
+        const url = new URL(this.BASE_URL + `/${path}/`);
         return this.requestGet(url.href);
     }
 
     async getBikeData(bikeId) {
-        const url = new URL(this.BASE_URL + `/getBikeData/${bikeId}`);
-        return this.requestGet(url.href);
+        return this.requestBikeData('getBikeData', bikeId);
     }
 
     async getBikeMessages(bikeId) {
-        const url = new URL(this.BASE_URL + `/getBikeMessages/${bikeId}`);
-        return this.requestGet(url.href);
+        return this.requestBikeData('getBikeMessages', bikeId);
     }
 
     async getCurrentBikeShares(bikeId) {
-        const url = new URL(this.BASE_URL + `/getBikeSharingInvitationsForBike/${bikeId}`);
+        return this.requestBikeData('getBikeSharingInvitationsForBike', bikeId);
+    }
+
+    async requestBikeData(path, bikeId) {
+        const url = new URL(this.BASE_URL + `/${path}/${bikeId}`);
         return this.requestGet(url.href);
     }
 }
