@@ -3,6 +3,12 @@
   "description": "Access VanMoof Web API (readonly)",
   "version": "0.1.0",
   "main": "src/index.js",
+  "keywords": [
+    "vanmoof",
+    "electrified",
+    "pedelec",
+    "bike"
+  ],
   "repository": "https://github.com/mrbungle64/vanmoof-webapi.js.git",
   "author": {
     "name": "Sascha Hölzel",
