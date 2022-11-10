@@ -2,7 +2,7 @@
   "name": "vanmoof-webapi.js",
   "description": "Access VanMoof Web API (readonly)",
   "version": "0.1.0",
-  "main": "src/index.js",
+  "main": "index.js",
   "keywords": [
     "vanmoof",
     "electrified",

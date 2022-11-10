@@ -1,6 +1,6 @@
 'use strict';
 
-const VanMoofWebAPI = require('../src/index.js');
+const VanMoofWebAPI = require('../index.js');
 const tools = require('./tools');
 const {buntstift} = require('buntstift');
 
