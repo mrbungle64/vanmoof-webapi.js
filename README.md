@@ -20,14 +20,14 @@ npm install
 
 # Example files
 
-* `examples/customerAndBikeData.js`
+* `example/customerAndBikeData.js`
 
 ## Setup
 
 Copy the `settings.js` file to the parent folder of the working directory
 
 ```bash
-cp examples/settings.js ./../
+cp example/settings.js ./../
 ```
 
 Add your VanMoof account information to this file
@@ -39,7 +39,7 @@ exports.PASSWORD = 'a1b2c3d4';
 ## Usage
 
 ```bash
-cd examples
+cd example
 node ./customerAndBikeData.js
 ```
 
