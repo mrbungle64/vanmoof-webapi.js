@@ -1,6 +1,6 @@
 # VanMoof Web API Library
 
-![S3](./vanmoof-s3.png)
+![S3](./vanmoof.png)
 
 This is a library for accessing the VanMoof Web API (read-only)
 
