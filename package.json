@@ -1,6 +1,6 @@
 {
   "name": "vanmoof-webapi.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Access VanMoof Web API (readonly)",
   "main": "index.js",
   "types": "./types/index.d.ts",

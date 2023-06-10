@@ -74,6 +74,11 @@ node ./customerAndBikeData.js
 
 ## Changelog
 
+### 0.1.1
+
+* Bumped axios to 1.4.0
+* Added new logo
+
 ### 0.1.0
 
 * Implemented basic functionality
@@ -92,7 +97,7 @@ I am in no way affiliated with VanMoof
 
 MIT License
 
-Copyright (c) 2022 Sascha Hölzel <mrb1232@posteo.de>
+Copyright (c) 2023 Sascha Hölzel <mrb1232@posteo.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
