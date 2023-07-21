@@ -13,13 +13,13 @@ const password = settingsFile.PASSWORD;
     const webAPI = new VanMoofWebAPI.WebAPI();
     try {
         await webAPI.authenticate(account, password);
-        const data = (await webAPI.getCustomerData()).data;
+        const data = (await webAPI.getCustomerData(true)).data;
         buntstift.line();
         buntstift.list(`Name: ${data.name}`);
         buntstift.list(`Email: ${data.email}`);
         buntstift.list(`Number of bikes: ${data.bikes.length}`);
-        for (let i = 0; i < data.bikes.length; i++) {
-            const bike = data.bikes[i];
+        for (let i = 0; i < data.bikeDetails.length; i++) {
+            const bike = data.bikeDetails[i];
             buntstift.header(`Bike #${i + 1} (id: ${bike.id}):`);
             buntstift.list(`name: ${bike.name}`);
             buntstift.list(`frame number: ${bike.frameNumber}`);
@@ -42,6 +42,10 @@ const password = settingsFile.PASSWORD;
             buntstift.list(`color: ${modelColor.name}`);
             buntstift.list(`color code (primary): ${modelColor.primary}`);
             buntstift.list(`color code (secondary): ${modelColor.secondary}`);
+            const key = bike.key;
+            buntstift.list(`encryptionKey ${key.encryptionKey}`);
+            buntstift.list(`passcode ${key.passcode}`);
+            buntstift.list(`userKeyId ${key.userKeyId}`);
         }
     } catch (e) {
         buntstift.error(e.toString());
