@@ -74,6 +74,11 @@ node ./customerAndBikeData.js
 
 ## Changelog
 
+### 0.2.0
+
+* Bumped axios to 1.7.9
+* Fixed base url
+
 ### 0.1.1
 
 * Bumped axios to 1.4.0
