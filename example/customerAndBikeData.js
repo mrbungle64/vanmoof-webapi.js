@@ -16,19 +16,23 @@ const password = settingsFile.PASSWORD;
         const data = webAPI.getCustomerData().data;
         console.log(data);
         buntstift.line();
-        buntstift.list(`Name: ${data.name}`);
-        buntstift.list(`Email: ${data.email}`);
-        buntstift.list(`Number of bikes: ${data.bikes.length}`);
+        buntstift.list(`name: ${data.name}`);
+        buntstift.list(`email: ${data.email}`);
+        buntstift.list(`number of bikes: ${data.bikes.length}`);
         for (let i = 0; i < data.bikeDetails.length; i++) {
             const bike = data.bikeDetails[i];
-            buntstift.header(`Bike #${i + 1} (id: ${bike.id}):`);
+            buntstift.header(`bike #${i + 1} (id: ${bike.id}):`);
             buntstift.list(`name: ${bike.name}`);
             buntstift.list(`frame number: ${bike.frameNumber}`);
-            buntstift.list(`mac address: ${bike.macAddress}`);
+            if (bike.macAddress) {
+                buntstift.list(`mac address: ${bike.macAddress}`);
+            }
             const tripDistance = await webAPI.getOdometer(bike.id);
             const distanceKilometers = tripDistance.toFixed(1);
             buntstift.list(`distance: ${distanceKilometers} km`);
-            buntstift.list(`firmware: ${bike.smartmoduleCurrentVersion}`);
+            if (bike.smartmoduleCurrentVersion) {
+                buntstift.list(`firmware: ${bike.smartmoduleCurrentVersion}`);
+            }
             if (bike.smartmoduleDesiredVersion) {
                 buntstift.list(`new firmware available: ${bike.smartmoduleDesiredVersion}`);
             }
