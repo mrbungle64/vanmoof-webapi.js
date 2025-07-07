@@ -7,7 +7,7 @@ This is an unofficial Node.js client for the VanMoof Web API.
 # Before you install
 
 * This library provides read-only access to your VanMoof account information only
-* You cannot connect to any bike (via Bluetooth)
+* You cannot connect to any bike via Bluetooth
 * You cannot change any information or settings
 
 # Installation
@@ -18,7 +18,7 @@ npm install vanmoof-webapi.js
 
 ## Requirements
 
-The minimum required version of Node.js is 20.x.
+The minimum required version of Node.js is 20.x
 
 # Example
 
@@ -72,9 +72,8 @@ node ./customerAndBikeData.js
 
 Creates a new API client instance.
 
-`username` (string, required): Your VanMoof account email.
-
-`password` (string, required): Your VanMoof account password.
+- `username` (string, required): Your VanMoof account email
+- `password` (string, required): Your VanMoof account password
 
 `async initialize()`
 
@@ -104,8 +103,7 @@ Returns the total odometer reading in kilometers for a specific bike. This metho
 ## Changelog
 
 ### 0.3.0
-* Added multi-model odometer support
-* Refactored the API client to provide accurate odometer readings for more models
+* Refactored the API client to provide multi-model odometer support
 * Bumped the minimum required version of Node.js to 20.x
 * Removed axios from dependencies
 
