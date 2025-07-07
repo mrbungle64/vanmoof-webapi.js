@@ -26,6 +26,9 @@
   "dependencies": {
     "buntstift": "^5.0.2"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "eslint": "^8.39.0",
     "@types/node": "^20.17.19",
