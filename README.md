@@ -1,26 +1,28 @@
-# VanMoof Web API Library
+# VanMoof Web API Client
 
 ![S3](./vanmoof.png)
 
-This is a library for accessing the VanMoof Web API (read-only)
+This is an unofficial Node.js client for the VanMoof Web API.
 
 # Before you install
 
-* This library provides access to your VanMoof account information only
+* This library provides read-only access to your VanMoof account information only
 * You cannot connect to any bike (via Bluetooth)
 * You cannot change any information or settings
 
 # Installation
 
 ```bash
-git clone https://github.com/mrbungle64/vanmoof-webapi.js.git
-cd vanmoof-webapi.js
-npm install
+npm install vanmoof-webapi.js
 ```
 
-# Example files
+## Requirements
 
-* `example/customerAndBikeData.js`
+The minimum required version of Node.js is 20.x.
+
+# Example
+
+To see the library in action, refer to the included example file. It provides a practical demonstration of the core workflow: initializing the client, and then outputting key customer data (like name and email) along with a list of all associated bikes and their odometer readings.
 
 ## Setup
 
@@ -33,7 +35,7 @@ cp example/settings.js ./../
 Add your VanMoof account information to this file
 ```js
 exports.ACCOUNT_ID = 'email@domain.com';
-exports.PASSWORD = 'a1b2c3d4';
+exports.PASSWORD = 'topSecretPassword';
 ```
 
 ## Usage
@@ -64,15 +66,48 @@ node ./customerAndBikeData.js
 ∙ color code (secondary): #25282a
 ```
 
-# Functions
+# API Reference
 
-* `getCustomerData()`
-* `getDevices()`
-* `getBikeData(bikeId)`
-* `getBikeMessages(bikeId)`
-* `getCurrentBikeShares(bikeId)`
+`new VanMoofApiClient(username, password)`
+
+Creates a new API client instance.
+
+`username` (string, required): Your VanMoof account email.
+
+`password` (string, required): Your VanMoof account password.
+
+`async initialize()`
+
+Authenticates with the VanMoof servers, fetches all necessary tokens and the base customer data. This method must be called before any other methods can be used.
+
+`getBikes()`
+
+Returns an array of bike objects associated with the account. Throws an error if the client has not been initialized.
+
+`getCustomerData()`
+
+Returns the raw customer data object fetched during initialization. Throws an error if the client has not been initialized.
+
+`async getRidesData(bikeId)`
+
+Fetches (or retrieves from cache) the weekly rides data object for a specific bike. This data is used internally by `getOdometer` and can be used for more advanced analysis of ride statistics.
+
+- `bikeId` (number, required): The ID of the bike.
+
+`async getOdometer(bikeId)`
+
+Returns the total odometer reading in kilometers for a specific bike. This method automatically determines the correct API endpoint to use based on the bike's model generation.
+
+- `bikeId` (number, required): The ID of the bike.
+
 
 ## Changelog
+
+### 0.3.0
+* Added multi-model odometer support
+* Refactored the API client to provide accurate odometer readings for more models
+* Bumped the minimum required version of Node.js to 20.x
+* Removed axios from dependencies
 
 ### 0.2.0
 
@@ -91,12 +126,13 @@ node ./customerAndBikeData.js
 
 ## Disclaimer
 
-I am in no way affiliated with VanMoof
+This is an unofficial library and is not affiliated with, maintained, or endorsed by VanMoof. The VanMoof API is not officially documented and may change at any time, which could break the functionality of this library. Use at your own risk.
 
 ## Thanks and credits
 
 * @Poket-Jony ([VanBike-Library](https://github.com/Poket-Jony/vanbike-lib))
 * @mjarkk ([Mooovy](https://github.com/mjarkk/vanmoof-web-controller))
+* Stefan Stranger ([Stefan Stranger's Blog](https://stefanstranger.github.io/2023/09/10/vanMoofsAPIReverseEngineeringAndDecompilation/index.html))
 
 ## License
 
