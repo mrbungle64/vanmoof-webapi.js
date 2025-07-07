@@ -10,10 +10,11 @@ const account = settingsFile.ACCOUNT;
 const password = settingsFile.PASSWORD;
 
 (async () => {
-    const webAPI = new VanMoofWebAPI.WebAPI();
+    const webAPI = new VanMoofWebAPI.WebAPI(account, password);
     try {
-        await webAPI.authenticate(account, password);
-        const data = (await webAPI.getCustomerData(true)).data;
+        await webAPI.initialize();
+        const data = webAPI.getCustomerData().data;
+        console.log(data);
         buntstift.line();
         buntstift.list(`Name: ${data.name}`);
         buntstift.list(`Email: ${data.email}`);
@@ -24,8 +25,8 @@ const password = settingsFile.PASSWORD;
             buntstift.list(`name: ${bike.name}`);
             buntstift.list(`frame number: ${bike.frameNumber}`);
             buntstift.list(`mac address: ${bike.macAddress}`);
-            const tripDistance = bike.tripDistance;
-            const distanceKilometers = (tripDistance / 10).toFixed(1);
+            const tripDistance = await webAPI.getOdometer(bike.id);
+            const distanceKilometers = tripDistance.toFixed(1);
             buntstift.list(`distance: ${distanceKilometers} km`);
             buntstift.list(`firmware: ${bike.smartmoduleCurrentVersion}`);
             if (bike.smartmoduleDesiredVersion) {
@@ -43,9 +44,12 @@ const password = settingsFile.PASSWORD;
             buntstift.list(`color code (primary): ${modelColor.primary}`);
             buntstift.list(`color code (secondary): ${modelColor.secondary}`);
             const key = bike.key;
-            buntstift.list(`encryptionKey ${key.encryptionKey}`);
-            buntstift.list(`passcode ${key.passcode}`);
-            buntstift.list(`userKeyId ${key.userKeyId}`);
+            if (key !== null) {
+                buntstift.list(`encryptionKey ${key.encryptionKey}`);
+                buntstift.list(`passcode ${key.passcode}`);
+                buntstift.list(`userKeyId ${key.userKeyId}`);
+            }
+            console.log(bike.links)
         }
     } catch (e) {
         buntstift.error(e.toString());
