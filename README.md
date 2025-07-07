@@ -20,7 +20,40 @@ npm install vanmoof-webapi.js
 
 The minimum required version of Node.js is 20.x
 
-# Example
+# API Reference
+
+`new VanMoofApiClient(username, password)`
+
+Creates a new API client instance.
+
+- `username` (string, required): Your VanMoof account email
+- `password` (string, required): Your VanMoof account password
+
+`async initialize()`
+
+Authenticates with the VanMoof servers, fetches all necessary tokens and the base customer data. This method must be called before any other methods can be used.
+
+`getBikes()`
+
+Returns an array of bike objects associated with the account. Throws an error if the client has not been initialized.
+
+`getCustomerData()`
+
+Returns the raw customer data object fetched during initialization. Throws an error if the client has not been initialized.
+
+`async getRidesData(bikeId)`
+
+Fetches (or retrieves from cache) the weekly rides data object for a specific bike. This data is used internally by `getOdometer` and can be used for more advanced analysis of ride statistics.
+
+- `bikeId` (number, required): The ID of the bike.
+
+`async getOdometer(bikeId)`
+
+Returns the total odometer reading in kilometers for a specific bike. This method automatically determines the correct API endpoint to use based on the bike's model generation.
+
+- `bikeId` (number, required): The ID of the bike.
+
+# Example file
 
 To see the library in action, refer to the included example file. It provides a practical demonstration of the core workflow: initializing the client, and then outputting key customer data (like name and email) along with a list of all associated bikes and their odometer readings.
 
@@ -65,40 +98,6 @@ node ./customerAndBikeData.js
 ∙ color code (primary): #25282a
 ∙ color code (secondary): #25282a
 ```
-
-# API Reference
-
-`new VanMoofApiClient(username, password)`
-
-Creates a new API client instance.
-
-- `username` (string, required): Your VanMoof account email
-- `password` (string, required): Your VanMoof account password
-
-`async initialize()`
-
-Authenticates with the VanMoof servers, fetches all necessary tokens and the base customer data. This method must be called before any other methods can be used.
-
-`getBikes()`
-
-Returns an array of bike objects associated with the account. Throws an error if the client has not been initialized.
-
-`getCustomerData()`
-
-Returns the raw customer data object fetched during initialization. Throws an error if the client has not been initialized.
-
-`async getRidesData(bikeId)`
-
-Fetches (or retrieves from cache) the weekly rides data object for a specific bike. This data is used internally by `getOdometer` and can be used for more advanced analysis of ride statistics.
-
-- `bikeId` (number, required): The ID of the bike.
-
-`async getOdometer(bikeId)`
-
-Returns the total odometer reading in kilometers for a specific bike. This method automatically determines the correct API endpoint to use based on the bike's model generation.
-
-- `bikeId` (number, required): The ID of the bike.
-
 
 ## Changelog
 
